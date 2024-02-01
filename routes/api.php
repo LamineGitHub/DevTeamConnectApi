@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\EmployerController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('api')->group(function () {
+    Route::resource('service', ServiceController::class)
+        ->except('create', 'edit');
+
+    Route::resource('employer', EmployerController::class)
+        ->except('create', 'edit');
 });
