@@ -14,7 +14,7 @@ class ServiceResource extends JsonResource
         return [
             'id' => $this->id,
             'libelle' => $this->libelle,
-            //'employers_count' => $this->employers()->count(),
+            'employers_count' => $this->employers()->count(),
         ];
     }
 }
