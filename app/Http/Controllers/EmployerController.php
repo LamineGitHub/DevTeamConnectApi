@@ -15,7 +15,7 @@ class EmployerController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        return EmployerResource::collection(Employer::with('service')->get());
+        return EmployerResource::collection(Employer::orderByDesc('id')->with('service')->get());
     }
 
     /**

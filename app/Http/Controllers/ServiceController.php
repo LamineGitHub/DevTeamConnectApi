@@ -15,7 +15,7 @@ class ServiceController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        return ServiceResource::collection(Service::all());
+        return ServiceResource::collection(Service::orderByDesc('id')->get());
     }
 
     /**
