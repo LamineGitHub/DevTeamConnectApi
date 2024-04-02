@@ -344,66 +344,108 @@ Nous accueillons les contributions à notre projet ! Si vous souhaitez contribue
 
 2. **Clonage du Projet :**  
    Clonez votre fork du projet sur votre machine locale.
+    
+    ```bash
+    git clone https://github.com/nom-utilisateur/nom-du-projet.git
+    ```
 
-```bash
-git clone https://github.com/nom-utilisateur/nom-du-projet.git
-```
+3. **Accédez au répertoire fraîchement cloné :**
 
-3. **Création d'une Branche :**  
+    ```bash
+    cd nom-du-projet
+    ```
+
+4. **Installez les dépendances PHP avec Composer :**
+
+    ```bash
+    composer install
+    ```
+
+5. **Copiez le fichier `.env.example` et renommez-le en `.env` :**
+
+    ```bash
+    cp .env.example .env
+    ```
+
+6. **Générez la clé d'application Laravel :**
+
+    ```bash
+    php artisan key:generate
+    ```
+
+7. **Configurez votre base de données dans le fichier `.env`.**
+
+
+8. **Exécutez les migrations pour créer les tables de base de données :**
+
+    ```bash
+    php artisan migrate
+    ``` 
+   
+9. Une fois le projet installé, vous pouvez le démarrer en local en exécutant la commande suivante :
+    ```bash
+    php artisan serve
+    ```
+
+    Cela démarrera un serveur de développement local à l'adresse http://localhost:8000/api/employer.  
+    Vous pouvez alors accéder à l'api du projet.
+
+
+10. **Création d'une Branche :**  
    Créez une branche pour votre contribution :
 
-```bash
-git checkout -b nouvelle-fonctionnalite
-```
+    ```bash
+    git checkout -b nouvelle-fonctionnalite
+    ```
 
-4. **Effectuer les Modifications :**  
+11. **Effectuer les Modifications :**  
    Faites les modifications nécessaires dans le code, en suivant les conventions de codage du projet.
 
 
-5. **Validation des Modifications :**  
+12. **Validation des Modifications :**  
    Avant de soumettre, assurez-vous que votre code fonctionne correctement.
 
 
-6. **Commit des Modifications :**  
+13. **Commit des Modifications :**  
    Ajoutez vos modifications à l'index et créez un commit :
 
-```bash
-git add .
-git commit -m "Ajout de la nouvelle fonctionnalité"
-```
+    ```bash
+    git add .
+    git commit -m "Ajout de la nouvelle fonctionnalité"
+    ```
 
-7. **Push des Modifications :**  
+14. **Push des Modifications :**  
    Poussez vos modifications vers votre fork sur GitHub :
 
-````bash
-git push origin nouvelle-fonctionnalite
-````
+    ````bash
+    git push origin nouvelle-fonctionnalite
+    ````
 
-8. **Création d'une Pull Request (PR) :**
+15. **Création d'une Pull Request (PR) :**
 
-- Rendez-vous sur la page de votre fork sur GitHub.
-- Cliquez sur le bouton **`Compare & pull request`** à côté de la branche que vous venez de pousser.
-- Remplissez le formulaire de la Pull Request avec les détails pertinents.
-- Cliquez sur **`Create pull request`** pour ouvrir la PR.
+    - Rendez-vous sur la page de votre fork sur GitHub.
+    - Cliquez sur le bouton **`Compare & pull request`** à côté de la branche que vous venez de pousser.
+    - Remplissez le formulaire de la Pull Request avec les détails pertinents.
+    - Cliquez sur **`Create pull request`** pour ouvrir la PR.
 
-9. **Attente de la Revue :**
 
-- Votre PR sera examinée par les contributeurs du projet.
-- Soyez prêt à apporter des modifications en fonction des retours, si nécessaire.
+16. **Attente de la Revue :**
+    - Votre PR sera examinée par les contributeurs du projet.
+    - Soyez prêt à apporter des modifications en fonction des retours, si nécessaire.
 
-10. **Fusion de la PR :**
 
-- Une fois que votre PR est approuvée, elle sera fusionnée dans la branche principale du projet.
+17. **Fusion de la PR :**
+    - Une fois que votre PR est approuvée, elle sera fusionnée dans la branche principale du projet.
 
-11. **Synchronisation avec la Branche Principale (Optionnel) :**
 
-- Pour maintenir votre fork à jour avec les dernières modifications de la branche principale :
+18. **Synchronisation avec la Branche Principale (Optionnel) :**  
+    - Pour maintenir votre fork à jour avec les dernières modifications de la branche principale :
 
-```bash
-  git checkout main
-  git pull upstream main
-  git push origin main
-```
+    ```bash
+      git checkout main
+      git pull upstream main
+      git push origin main
+    ```
 
 Merci pour votre Contribution !
 
