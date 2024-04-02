@@ -387,7 +387,7 @@ Nous accueillons les contributions à notre projet ! Si vous souhaitez contribue
     php artisan serve
     ```
 
-    Cela démarrera un serveur de développement local à l'adresse http://localhost:8000/api/employer.  
+    Cela démarrera un serveur de développement local à l'adresse http://localhost:8000/api.  
     Vous pouvez alors accéder à l'api du projet.
 
 
