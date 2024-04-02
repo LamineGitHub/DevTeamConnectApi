@@ -23,7 +23,7 @@ class ServiceController extends Controller
      */
     public function store(ServiceFormRequest $request): ServiceResource
     {
-        return new ServiceResource(Service::create($request->all()));
+        return new ServiceResource(Service::create($request->validated()));
     }
 
     /**
@@ -39,7 +39,7 @@ class ServiceController extends Controller
      */
     public function update(ServiceFormRequest $request, Service $service): ServiceResource
     {
-        $service->update($request->all());
+        $service->update($request->validated());
 
         return new ServiceResource($service);
     }

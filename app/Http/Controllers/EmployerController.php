@@ -23,7 +23,7 @@ class EmployerController extends Controller
      */
     public function store(EmployerFormRequest $request): EmployerResource
     {
-        return new EmployerResource(Employer::create($request->all()));
+        return new EmployerResource(Employer::create($request->validated()));
     }
 
     /**
@@ -39,7 +39,7 @@ class EmployerController extends Controller
      */
     public function update(EmployerFormRequest $request, Employer $employer): EmployerResource
     {
-        $employer->update($request->all());
+        $employer->update($request->validated());
 
         return new EmployerResource($employer);
     }
