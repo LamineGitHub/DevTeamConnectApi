@@ -346,7 +346,7 @@ Nous accueillons les contributions à notre projet ! Si vous souhaitez contribue
    Clonez votre fork du projet sur votre machine locale.
 
 ```bash
-git clone https://github.com/LamineGitHub/DevTeamConnectApi.git
+git clone https://github.com/votre-utilisateur/nom-du-projet.git
 ```
 
 3. **Création d'une Branche :**  
