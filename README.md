@@ -1,66 +1,410 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Documentation de l'API de Gestion des Employés et Services
 
-## About Laravel
+Bienvenue dans la documentation de l'API de Gestion des Employés et Services.  
+Cette API fournit des endpoints pour
+gérer les employés et les services au sein d'une entreprise.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Introduction
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Cette API permet aux développeurs d'accéder aux fonctionnalités suivantes :
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Créer, lire, mettre à jour et supprimer des employés.
+- Créer, lire, mettre à jour et supprimer des services offerts par l'entreprise.
+- Assigner des employés à des services.
 
-## Learning Laravel
+## Endpoints
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Employés
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Récupère la liste de tous les employés :
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#### `GET /api/employer`
 
-## Laravel Sponsors
+```http
+GET /api/employer
+Accept: application/json
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Exemple de réponse :
 
-### Premium Partners
+```json
+{
+    "data": [
+        {
+            "id": 1,
+            "matricule": "lfNp1ET",
+            "prenom": "Dominique",
+            "nom": "Faure",
+            "tel": "+33 (0)4 35 93 07 82",
+            "email": "gomez.juliette@example.com",
+            "salaire": 462,
+            "dateNaiss": "1992-09-26",
+            "service_id": 1,
+            "service": {
+                "id": 1,
+                "libelle": "Gestion de bases de données"
+            }
+        },
+        {
+            "id": 2,
+            "matricule": "6YCHdgW",
+            "prenom": "Amélie",
+            "nom": "Brun",
+            "tel": "0914275784",
+            "email": "timothee46@example.com",
+            "salaire": 354,
+            "dateNaiss": "1997-11-09",
+            "service_id": 1,
+            "service": {
+                "id": 1,
+                "libelle": "Gestion de bases de données"
+            }
+        }
+    ]
+}
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Crée un nouvel employé :
 
-## Contributing
+#### `POST /api/employer`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```http
+POST /api/employer
+Content-Type: application/json
 
-## Code of Conduct
+{
+  "matricule": 12345,
+  "prenom": "John",
+  "nom": "Doe",
+  "tel": "123456789",
+  "email": "john.doe@example.com",
+  "salaire": 50000,
+  "dateNaiss": "1990-01-01",
+  "service_id": 1
+}
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Exemple de réponse :
 
-## Security Vulnerabilities
+```json
+{
+    "data": {
+        "id": 3,
+        "matricule": 12345,
+        "prenom": "John",
+        "nom": "Doe",
+        "tel": "123456789",
+        "email": "john.doe@example.com",
+        "salaire": 50000,
+        "dateNaiss": "1990-01-01",
+        "service_id": 1
+    }
+}
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Récupère les informations d'un employé spécifique par son ID :
 
-## License
+#### `GET /api/employer/{id}`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```http
+GET /api/employer/3
+Accept: application/json
+```
+
+Exemple de réponse :
+
+```json
+{
+    "data": {
+        "id": 3,
+        "matricule": 12345,
+        "prenom": "John",
+        "nom": "Doe",
+        "tel": "123456789",
+        "email": "john.doe@example.com",
+        "salaire": 50000,
+        "dateNaiss": "1990-01-01",
+        "service_id": 1
+    }
+}
+```
+
+Met à jour les informations d'un employé spécifique par son ID :
+
+#### `PATCH /api/employer/{id}`
+
+```http
+PATCH /api/employer/3
+Content-Type: application/json
+
+{
+  "matricule": 12345,
+  "prenom": "lamine",
+  "nom": "diallo",
+  "tel": "123456789",
+  "email": "lamine.diallo@example.com",
+  "salaire": 50000,
+  "dateNaiss": "1990-01-01",
+  "service_id": 3
+}
+```
+
+Exemple de réponse :
+
+```json
+{
+    "data": {
+        "id": 3,
+        "matricule": 12345,
+        "prenom": "lamine",
+        "nom": "diallo",
+        "tel": "123456789",
+        "email": "lamine.diallo@example.com",
+        "salaire": 50000,
+        "dateNaiss": "1990-01-01",
+        "service_id": 3
+    }
+}
+```
+
+Supprime un employé spécifique par son ID :
+
+#### `DELETE /api/employer/{id}`
+
+```http
+DELETE /api/employer/3
+```
+
+Exemple de réponse :
+
+```json
+"Employé supprimé avec succès"
+```
+
+### Services
+
+Récupère la liste de tous les services disponibles :
+
+#### `GET /api/service`
+
+```http
+GET /api/service
+Accept: application/json
+```
+
+Exemple de réponse :
+
+```json
+{
+    "data": [
+        {
+            "id": 1,
+            "libelle": "Gestion de bases de données"
+        },
+        {
+            "id": 2,
+            "libelle": "Développement d'applications mobiles"
+        },
+        {
+            "id": 3,
+            "libelle": "Réseaux informatiques"
+        },
+        {
+            "id": 4,
+            "libelle": "Développement Web"
+        }
+    ]
+}
+```
+
+Crée un nouveau service :
+
+#### `POST /api/service`
+
+```http
+POST /api/service
+Content-Type: application/json
+
+{
+  "libelle": "Pédiatrie"
+}
+```
+
+Exemple de réponse :
+
+```json
+{
+    "data": {
+        "id": 5,
+        "libelle": "Pédiatrie"
+    }
+}
+```
+
+Récupère les informations d'un service spécifique par son ID :
+
+#### `GET /api/service/{id}`
+
+```http
+GET /api/service/5
+Accept: application/json
+```
+
+Exemple de réponse :
+
+```json
+{
+    "data": {
+        "id": 5,
+        "libelle": "Pédiatrie"
+    }
+}
+```
+
+Met à jour les informations d'un service spécifique par son ID :
+
+#### `PATCH /api/service/{id}`
+
+```http
+PATCH /api/service/5
+Content-Type: application/json
+
+{
+  "libelle": "Chirurgie"
+}
+```
+
+Exemple de réponse :
+
+```json
+{
+    "data": {
+        "id": 5,
+        "libelle": "Chirurgie"
+    }
+}
+```
+
+Supprime un service spécifique par son ID :
+
+#### `DELETE /api/service/{id}`
+
+```http
+DELETE /api/service/5
+```
+
+Exemple de réponse :
+
+```json
+"Service supprimé avec succès"
+```
+
+## Réponses
+
+Les réponses de l'API sont au format JSON et suivent la structure suivante :
+
+```json
+{
+    "data": {}
+}
+```
+
+En cas d'erreur, la réponse suivra cette structure :
+
+```json
+{
+    "error": "Message d'erreur"
+}
+```
+
+## Exemples de Code
+
+### JavaScript
+
+```js
+// Exemple de requête pour lister les employés
+fetch('http://localhost:8000/api/employer')
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+```
+
+---
+
+## Contribution au Projet
+
+Nous accueillons les contributions à notre projet ! Si vous souhaitez contribuer, veuillez suivre ces étapes simples :
+
+1. **Fork du Projet :**  
+   Cliquez sur le bouton **`Fork`** en haut de la page du dépôt pour créer une copie de notre projet sur votre compte
+   GitHub.
+
+
+2. **Clonage du Projet :**  
+   Clonez votre fork du projet sur votre machine locale.
+
+```bash
+git clone https://github.com/LamineGitHub/DevTeamConnectApi.git
+```
+
+3. **Création d'une Branche :**  
+   Créez une branche pour votre contribution :
+
+```bash
+git checkout -b nouvelle-fonctionnalite
+```
+
+4. **Effectuer les Modifications :**  
+   Faites les modifications nécessaires dans le code, en suivant les conventions de codage du projet.
+
+
+5. **Validation des Modifications :**  
+   Avant de soumettre, assurez-vous que votre code fonctionne correctement.
+
+
+6. **Commit des Modifications :**  
+   Ajoutez vos modifications à l'index et créez un commit :
+
+```bash
+git add .
+git commit -m "Ajout de la nouvelle fonctionnalité"
+```
+
+7. **Push des Modifications :**  
+   Poussez vos modifications vers votre fork sur GitHub :
+
+````bash
+git push origin nouvelle-fonctionnalite
+````
+
+8. **Création d'une Pull Request (PR) :**
+
+- Rendez-vous sur la page de votre fork sur GitHub.
+- Cliquez sur le bouton **`Compare & pull request`** à côté de la branche que vous venez de pousser.
+- Remplissez le formulaire de la Pull Request avec les détails pertinents.
+- Cliquez sur **`Create pull request`** pour ouvrir la PR.
+
+9. **Attente de la Revue :**
+
+- Votre PR sera examinée par les contributeurs du projet.
+- Soyez prêt à apporter des modifications en fonction des retours, si nécessaire.
+
+10. **Fusion de la PR :**
+
+- Une fois que votre PR est approuvée, elle sera fusionnée dans la branche principale du projet.
+
+11. **Synchronisation avec la Branche Principale (Optionnel) :**
+
+- Pour maintenir votre fork à jour avec les dernières modifications de la branche principale :
+
+```bash
+  git checkout main
+  git pull upstream main
+  git push origin main
+```
+
+Merci pour votre Contribution !
+
+Votre contribution aide à améliorer notre projet pour tout le monde.
