@@ -6,13 +6,13 @@ settings:
 
 devDependencies:
   axios:
-    specifier: ^1.6.4
+    specifier: ^1.6.8
     version: 1.6.8
   laravel-vite-plugin:
-    specifier: ^1.0.0
+    specifier: ^1.0.2
     version: 1.0.2(vite@5.2.8)
   vite:
-    specifier: ^5.0.0
+    specifier: ^5.2.8
     version: 5.2.8
 
 packages:
